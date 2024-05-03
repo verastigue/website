@@ -26,4 +26,6 @@ if(isset($_POST['logout'])) {
     exit;
 }
 
+$schedules = $studentModel->GetAllSchedule()->fetchAll();
+
 require("../views/studentpage.view.php");

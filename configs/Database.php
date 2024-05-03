@@ -19,7 +19,7 @@ class Database {
         return $this->conn;
     }
 
-    public function executeQuery($query, $params) {
+    public function executeQuery($query, $params = []) {
         $connection = $this->getConnection();
 
         $stmt = $connection->prepare($query);

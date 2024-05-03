@@ -58,6 +58,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     $_SESSION['message'] = $message;
 }
 
-
 require("../views/authentication.view.php");
 

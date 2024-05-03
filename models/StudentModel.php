@@ -11,10 +11,13 @@ class StudentModel {
 
     public function validateStudent($studentNo, $email) {
         $query = "SELECT * FROM tbl_students WHERE students_no = :studentNo AND email = :email";
+
         $params = [
             ':studentNo' => $studentNo,
             ':email' => $email
         ];
+
+        
     
         $result = $this->db->executeQuery($query, $params);
 
@@ -74,6 +77,15 @@ class StudentModel {
         
         return $result;
     }
+
+    public function GetAllSchedule(){
+        $query = "SELECT s.room_no, s.course_code, c.description AS Description, c.credits AS Credits, CONCAT(i.firstname, ' ', i.lastname) AS Instructor, s.section, s.class_day, CONCAT(TIME_FORMAT(s.start_time, '%h:%i %p'), ' - ', TIME_FORMAT(s.end_time, '%h:%i %p')) AS Time FROM tbl_schedules s LEFT JOIN tbl_instructors i ON s.instructor_no = i.instructor_no LEFT JOIN tbl_courses c ON s.course_code = c.course_code ORDER BY FIELD(s.class_day, 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'), s.start_time DESC";
+
+
+        $result = $this->db->executeQuery($query);
+    
+        return $result;
+    }   
 
 
 }

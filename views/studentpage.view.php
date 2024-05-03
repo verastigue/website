@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../public/styles/mainpage.css">
+    <link rel="stylesheet" href="../public/styles/mainpages.css">
     <link rel="stylesheet" href="../public/styles/topbar.css">
     
 </head>
@@ -54,18 +54,55 @@
 
 
             <div class="right-content">
-                <h3>Search Schedule</h3>
+                <div class='top-content' >
+                    <h3>Search Schedule</h3>
+                    <div class="search-section">
+                        <div class="search">
+                            <img class="icon" src="../public/images/search-icon.png">
+                            <input type="text" placeholder="Search">
+                        </div>
 
-                <div class="search-section">
-                    
-                    <div class="search">
-                        <img class="icon" src="../public/images/search-icon.png">
-                        <input type="text" placeholder="Search">
+                        <button>PRINT</button>
                     </div>
-
-                    <button>PRINT</button>
-                
                 </div>
+
+                <div class='bottom-content'>
+                    <table>
+                        <tr>
+                            <th>Room No</th>
+                            <th>Subject Code</th>
+                            <th>Description</th>
+                            <th>Credits</th>
+                            <th>Section</th>
+                            <th>Instructor</th>
+                            <th>Class Day</th>
+                            <th>Time</th>
+                        </tr>
+
+
+
+                        <!-- CODE -->
+
+                        <?php foreach($schedules as $schedule): ?>
+
+                        <tr>
+                            <td><?php echo $schedule['room_no']; ?></td>
+                            <td><?php echo $schedule['course_code']; ?></td>
+                            <td><?php echo $schedule['Description']; ?></td>
+                            <td><?php echo $schedule['Credits']; ?></td>
+                            <td><?php echo $schedule['section']; ?></td>
+                            <td><?php echo $schedule['Instructor']; ?></td>
+                            <td><?php echo $schedule['class_day']; ?></td>
+                            <td><?php echo $schedule['Time']; ?></td>
+                        </tr>
+
+                        <?php endforeach ?>
+                        
+                               
+                    </table>
+                </div>
+
+
             </div>
         </div>
     </section>
