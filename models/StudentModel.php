@@ -10,7 +10,7 @@ class StudentModel {
     }
 
     public function validateStudent($studentNo, $email) {
-        $query = "SELECT * FROM tbl_students WHERE students_no = :studentNo AND email = :email";
+        $query = "SELECT COUNT(*) FROM tbl_students WHERE students_no = :studentNo AND email = :email";
 
         $params = [
             ':studentNo' => $studentNo,

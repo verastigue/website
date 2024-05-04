@@ -3,7 +3,6 @@
 session_start();
 
 require_once("../models/StudentModel.php");
-
 $studentModel = new StudentModel($db);
 
 if (isset($_SESSION['studentNo'])) {

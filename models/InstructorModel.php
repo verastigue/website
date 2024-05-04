@@ -1,6 +1,7 @@
 <?php
 
 require("../configs/Database.php");
+$db = new Database();
 
 class InstructorModel {
     private $db;
@@ -16,7 +17,10 @@ class InstructorModel {
             ':email' => $email
         ];
     
-        return $this->db->executeQuery($query, $params);
+        
+        $result =  $this->db->executeQuery($query, $params);
+
+        return $result;
     }
 
     

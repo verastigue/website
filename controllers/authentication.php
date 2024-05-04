@@ -1,8 +1,7 @@
 <?php
 session_start();
-require_once("../models/StudentModel.php");
-
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
+    
     $studentInstructorNo = $_POST['StudentInstructorNo'];
     $loginType = $_POST['LoginType'];
     $email = $_POST['email'];
@@ -16,11 +15,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     } else {
         // VALIDATE THE LOGIN 
         if ($loginType == 'Student') {
+            require("../models/StudentModel.php");
             $studentNo = $_POST['StudentInstructorNo'];
-
             $studentModel = new StudentModel($db);
 
-   
             if ($studentModel->validateStudent($studentNo, $email)) {
                 $_SESSION['studentNo'] = $studentNo;
                 
@@ -35,16 +33,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
                 ];
             }
         } elseif ($loginType == 'Instructor') {
+            require("../models/InstructorModel.php");
             $instructorNo = $_POST['StudentInstructorNo'];
-
-    
             $instructorModel = new InstructorModel($db);
-
   
             if ($instructorModel->validateInstructor($instructorNo, $email)) {
                 $_SESSION['instructorNo'] = $instructorNo;
+                
                 $_SESSION['user_type'] = 'instructor'; 
-                header('Location: Instructor_Dashboard.php');
+                header('Location: instructorpage.php');
                 exit;
             } else {
                 $message = [
